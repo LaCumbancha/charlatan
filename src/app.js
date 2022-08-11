@@ -1,8 +1,23 @@
-// src.js
+const whatsappURL = 'https://wa.me?+{country}{number}';
 
-let color = '#3aa757';
+// Initialize elements
+let phoneInput = document.getElementById("phone-number");
+let countrySelector = document.getElementById("phone-code");
+let goButton = document.getElementById("go-button");
 
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({ color });
-    console.log('Default background color set to %cgreen', `color: ${color}`);
+let countryCode = countrySelector.selectedOptions[0].value;
+let phoneNumber = "";
+
+countrySelector.addEventListener("change", async () => {
+    countryCode = countrySelector.selectedOptions[0].value
+});
+
+phoneInput.addEventListener("input", async () => {
+    phoneNumber = phoneInput.value
+});
+
+goButton.addEventListener("click", async () => {
+    let newURL = whatsappURL.replace('{country}', countryCode).replace('{number}', phoneNumber)
+    console.log(newURL)
+    chrome.tabs.create({ url: newURL });
 });

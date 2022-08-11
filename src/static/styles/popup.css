@@ -43,13 +43,14 @@ body {
     padding: 8px 12px;
     margin: 8px 0;
     box-sizing: border-box;
+    text-align: right;
 }
 
 .wrapper {
     text-align: center;
 }
 
-#button {
+#go-button {
     margin: 20px;
     font-weight: bold;
 }

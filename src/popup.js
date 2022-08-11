@@ -1,24 +1,48 @@
-// Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+const whatsappURL = 'https://wa.me/+{country}{number}';
 
-chrome.storage.sync.get("color", ({ color }) => {
-    changeColor.style.backgroundColor = color;
+// Initialize elements
+let phoneInput = document.getElementById("phone-number");
+let countrySelector = document.getElementById("phone-code");
+let goButton = document.getElementById("go-button");
+
+let countryCode = countrySelector.selectedOptions[0].value;
+let phoneNumber = "";
+
+countrySelector.addEventListener("change", async () => {
+    countryCode = countrySelector.selectedOptions[0].value;
+    phoneInput.focus();
 });
 
-// When the button is clicked, inject setPageBackgroundColor into current page
-changeColor.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: setPageBackgroundColor,
-    });
+countrySelector.addEventListener("close", async () => {
+    blur.call(document.querySelectorAll('#phone-code'));
 });
 
-// The body of this function will be executed as a content script inside the
-// current page
-function setPageBackgroundColor() {
-    chrome.storage.sync.get("color", ({ color }) => {
-        document.body.style.backgroundColor = color;
+phoneInput.addEventListener("input", async () => {
+    phoneNumber = phoneInput.value;
+});
+
+goButton.addEventListener("click", async () => {
+    if (phoneNumber !== "") {
+        let newURL = whatsappURL.replace('{country}', countryCode).replace('{number}', phoneNumber);
+        //console.log(newURL);
+        chrome.tabs.create({ url: newURL });
+    }
+});
+
+function focus() {
+    [].forEach.call(this.options, function(opt) {
+        opt.textContent = opt.getAttribute('data-flag') + ' ' + opt.getAttribute('data-name') + ' (+' + opt.getAttribute('value') + ')';
     });
 }
+
+function blur() {
+    [].forEach.call(this.options, function(opt) {
+        opt.textContent = opt.getAttribute('data-flag') + ' +' + opt.getAttribute('value');
+    });
+}
+
+[].forEach.call(document.querySelectorAll('#phone-code'), function(s) {
+    s.addEventListener('focus', focus);
+    s.addEventListener('blur', blur);
+    blur.call(s);
+});

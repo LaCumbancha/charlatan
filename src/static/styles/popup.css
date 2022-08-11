@@ -27,7 +27,7 @@ body {
 
 #phone-code {
     float: left;
-    width: 30%;
+    width: 35%;
     padding: 9px 2px 10px 2px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -39,7 +39,7 @@ body {
 
 #phone-number {
     float: right;
-    width: 70%;
+    width: 65%;
     padding: 8px 12px;
     margin: 8px 0;
     box-sizing: border-box;

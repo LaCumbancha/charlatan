@@ -1,2 +1,2 @@
-# charlatan
-Chrome extension that map a phone number to its Whatsapp API
+# Charlatan
+Chrome extension that map a phone number to its Whatsapp API.

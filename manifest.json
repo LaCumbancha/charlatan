@@ -1,5 +1,5 @@
 {
-  "name": "Charlatán",
+  "name": "Whatsappito",
   "description": "Conectate por Whatsapp!",
   "author": "LaCumbancha",
   "version": "1.0",
@@ -10,7 +10,6 @@
     "64": "images/logo/64x64.png",
     "128": "images/logo/128x128.png"
   },
-  "permissions": ["scripting"],
   "action": {
     "default_popup": "src/static/popup.html",
     "default_icons": {

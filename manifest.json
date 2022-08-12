@@ -10,10 +10,7 @@
     "64": "images/logo/64x64.png",
     "128": "images/logo/128x128.png"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
-  "background": {
-    "service_worker": "src/app.js"
-  },
+  "permissions": ["scripting"],
   "action": {
     "default_popup": "src/static/popup.html",
     "default_icons": {
